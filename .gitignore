@@ -1,0 +1,7 @@
+venv/
+paquetes/
+__pycache__/
+*.py[cod]
+.vscode/
+.env
+*.sqlite3-journal
