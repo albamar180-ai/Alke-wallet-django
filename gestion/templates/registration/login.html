@@ -1,0 +1,35 @@
+{% extends 'gestion/base.html' %}
+
+{% block title %}Iniciar sesión | Alke Wallet{% endblock %}
+
+{% block content %}
+
+<div class="tarjeta" style="max-width:450px; margin:60px auto;">
+
+    <h1 style="text-align:center;">💳 Alke Wallet</h1>
+
+    <h2 style="text-align:center;">Iniciar sesión</h2>
+
+    {% if form.errors %}
+        <p style="color:#d62828; text-align:center;">
+            Usuario o contraseña incorrectos.
+        </p>
+    {% endif %}
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit"
+                class="boton"
+                style="width:100%;">
+            🔐 Ingresar
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

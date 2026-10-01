@@ -1,0 +1,33 @@
+{% extends 'gestion/base.html' %}
+
+{% block title %}{{ titulo }} | Alke Wallet{% endblock %}
+
+{% block content %}
+
+<div class="tarjeta" style="max-width:650px; margin:auto;">
+
+    <h1>💸 {{ titulo }}</h1>
+
+    <p>Completa los datos de la transacción.</p>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="boton">
+            💾 Guardar
+        </button>
+
+        <a href="{% url 'lista_transacciones' %}"
+           class="boton"
+           style="background:#6b7280;">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

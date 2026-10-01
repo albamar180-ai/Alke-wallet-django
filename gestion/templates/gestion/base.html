@@ -1,0 +1,214 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Alke Wallet{% endblock %}</title>
+
+    <!-- Archivo estático CSS de Django -->
+    <link rel="stylesheet" href="{% static 'gestion/style.css' %}">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        header {
+            background: #14213d;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #4cc9f0;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #4cc9f0;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .tarjeta {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        h1,
+        h2 {
+            color: #14213d;
+        }
+
+        .boton {
+            display: inline-block;
+            background: #0077b6;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .boton:hover {
+            background: #023e8a;
+        }
+
+        .boton-editar {
+            background: #fca311;
+        }
+
+        .boton-editar:hover {
+            background: #e59400;
+        }
+
+        .boton-eliminar {
+            background: #d62828;
+        }
+
+        .boton-eliminar:hover {
+            background: #a91f1f;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background: #14213d;
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        footer {
+            text-align: center;
+            color: #6b7280;
+            padding: 25px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            ALKE <span>WALLET</span>
+        </div>
+
+        <nav>
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'lista_cuentas' %}">
+                    Cuentas
+                </a>
+
+                <a href="{% url 'lista_transacciones' %}">
+                    Transacciones
+                </a>
+
+                <span>
+                    👤 {{ user.username }}
+                </span>
+
+                <form method="post"
+                      action="{% url 'logout' %}"
+                      style="display:inline; margin:0;">
+
+                    {% csrf_token %}
+
+                    <button type="submit" class="boton">
+                        Cerrar sesión
+                    </button>
+
+                </form>
+
+            {% else %}
+
+                <a href="{% url 'login' %}">
+                    Iniciar sesión
+                </a>
+
+            {% endif %}
+
+        </nav>
+
+    </header>
+
+    <main class="contenedor">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+    <footer>
+        Alke Wallet · Proyecto Módulo 7 · Django
+    </footer>
+
+</body>
+
+</html>

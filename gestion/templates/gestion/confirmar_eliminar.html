@@ -1,0 +1,38 @@
+{% extends 'gestion/base.html' %}
+
+{% block title %}Eliminar cuenta | Alke Wallet{% endblock %}
+
+{% block content %}
+
+<div class="tarjeta" style="max-width:600px; margin:auto; text-align:center;">
+
+    <h1>⚠️ Eliminar cuenta</h1>
+
+    <p>
+        ¿Estás seguro de que deseas eliminar la cuenta
+        <strong>{{ cuenta.numero_cuenta }}</strong>?
+    </p>
+
+    <p>
+        Usuario: <strong>{{ cuenta.usuario.username }}</strong>
+    </p>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <button type="submit" class="boton boton-eliminar">
+            🗑️ Sí, eliminar
+        </button>
+
+        <a href="{% url 'lista_cuentas' %}"
+           class="boton"
+           style="background:#6b7280;">
+            Cancelar
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}
