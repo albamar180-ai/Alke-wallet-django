@@ -407,7 +407,7 @@ Para un entorno de producción, el proyecto puede configurarse para utilizar Pos
 ### 1. Clonar el repositorio
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/albamar180-ai/Alke-wallet-django
 ```
 
 ### 2. Entrar al proyecto
